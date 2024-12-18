@@ -16,6 +16,14 @@
     "issues": "https://github.com/anviaan/CreateUnbreakableTools/issues",
     "homepage": "https://modrinth.com/mod/create_unbreakable"
   },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/create-unbreakable-tools",
+        "modmenu.modrinth": "https://modrinth.com/mod/create_unbreakable"
+      }
+    }
+  },
   "license": "GPL-3.0",
   "icon": "assets/create_unbreakable/icon.png",
   "environment": "*",
@@ -32,9 +40,6 @@
     "minecraft": "${minecraft_version}",
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
-    "create": "*"
-  },
-  "recommends": {
-    "create": "${create_version}"
+    "create": ">=${create_version}"
   }
 }
