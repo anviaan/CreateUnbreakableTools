@@ -3,6 +3,15 @@ plugins {
     id "dev.architectury.loom" version "1.7.+" apply false
 }
 
+tasks.register("printEnv") {
+    doLast {
+        def envFile = new File(System.getenv("GITHUB_ENV"))
+        envFile.append("MOD_VERSION=$mod_version\n")
+        envFile.append("RELEASE_NAME=$archives_base_name-$mod_version\n")
+        envFile.append("GAME_VERSIONS=$minecraft_version\n")
+    }
+}
+
 architectury {
     minecraft = minecraft_version
 }
