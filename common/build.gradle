@@ -28,4 +28,5 @@ repositories {
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:$fabric_loader_version")
     modCompileOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version")
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:8.0.1"
 }

@@ -56,8 +56,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "examplemod-common.mixins.json",
-                "examplemod.mixins.json"
+                "create_unbreakable-common.mixins.json",
+                "create_unbreakable.mixins.json"
         )
     }
 }
