@@ -1,4 +1,4 @@
-name: Fabric and NeoForge Publish
+name: Fabric and Forge Publish
 
 on:
   workflow_dispatch:
@@ -65,6 +65,7 @@ jobs:
             fabric-api
             create-fabric
             porting_lib
+            forge-config-api-port
 
           java: ${{ env.JAVA_VERSION }}
 

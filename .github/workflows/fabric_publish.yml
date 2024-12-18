@@ -65,5 +65,6 @@ jobs:
             fabric-api
             create-fabric
             porting_lib
+            forge-config-api-port
 
           java: ${{ env.JAVA_VERSION }}
