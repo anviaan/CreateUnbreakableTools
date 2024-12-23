@@ -1,2 +1,1 @@
-- Updating dependencies
-- Addition of a configuration file to activate/deactivate the explanatio of the luminarchy and philolite blocks.
+- Fixing a crash related to java version 
