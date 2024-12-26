@@ -49,7 +49,7 @@ jobs:
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           files: |
-            fabric/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabric/build/libs/!(*-@(dev|sources|javadoc|shadow)).jar
 
           name: ${{ env.RELEASE_NAME }}
           version: ${{ env.MOD_VERSION }}
@@ -79,7 +79,7 @@ jobs:
           curseforge-token: ${{ env.CURSEFORGE_TOKEN }}
 
           files: |
-            forge/build/libs/!(*-@(dev|sources|javadoc)).jar
+            forge/build/libs/!(*-@(dev|sources|javadoc|shadow)).jar
 
           name: ${{ env.RELEASE_NAME }}
           version: ${{ env.MOD_VERSION }}
