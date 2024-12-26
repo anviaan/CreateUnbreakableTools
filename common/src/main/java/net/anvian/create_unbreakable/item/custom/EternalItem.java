@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 
 public class EternalItem extends Item {
-    public EternalItem(Properties properties, int amount) {
-        super(properties.rarity(Rarity.RARE).stacksTo(amount));
+    public EternalItem(Properties properties) {
+        super(properties.rarity(Rarity.RARE));
     }
 
     @Override

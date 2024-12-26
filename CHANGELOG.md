@@ -1,1 +1,1 @@
-- Fixing a crash related to java version
+- Fixing a crash when items are registered

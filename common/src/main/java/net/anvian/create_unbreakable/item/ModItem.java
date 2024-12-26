@@ -9,13 +9,13 @@ public class ModItem {
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateUnbreakableToolsMod.MOD_ID);
 
     public static final ItemEntry<EternalItem> IRROMOLDING = REGISTRATE.item("irromolding",
-            (p -> new EternalItem(p, 1))).register();
+            EternalItem::new).properties(properties -> properties.stacksTo(1)).register();
 
     public static final ItemEntry<EternalItem> PHILOLITE = REGISTRATE.item("philolite",
-            (p -> new EternalItem(p, 64))).register();
+            EternalItem::new).register();
 
     public static final ItemEntry<EternalItem> LUMINARCHY = REGISTRATE.item("luminarchy",
-            (p -> new EternalItem(p, 64))).register();
+            EternalItem::new).register();
 
     public static void init() {
         CreateUnbreakableToolsMod.LOGGER.info("Registering items for " + CreateUnbreakableToolsMod.NAME);
