@@ -1,1 +1,2 @@
-- Fixing a crash related to java version 
+- Adding break by silk touch pickaxe
+- Word generation adjustments
