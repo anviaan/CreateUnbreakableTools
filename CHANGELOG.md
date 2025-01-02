@@ -1,1 +1,2 @@
-- Fixing a crash when items are registered
+- Adding break by silk touch pickaxe
+- Word generation adjustments
