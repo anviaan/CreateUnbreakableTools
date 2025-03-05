@@ -22,8 +22,8 @@ public class CreateUnbreakableToolsFabric implements ModInitializer {
                 () -> () -> "{} is accessing Porting Lib on a Fabric server!"
         ), CreateUnbreakableToolsMod.NAME);
 
-        ForgeConfigRegistry.INSTANCE.register(CreateUnbreakableToolsMod.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.MOD_ID + "-config.toml");
-        ModConfigs.loadConfig(ModConfigs.SPEC, FabricLoader.getInstance().getConfigDir().resolve(CreateUnbreakableToolsMod.MOD_ID + "-config.toml"));
+        ForgeConfigRegistry.INSTANCE.register(CreateUnbreakableToolsMod.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.CONFIG_FILE_NAME);
+        ModConfigs.loadConfig(ModConfigs.SPEC, FabricLoader.getInstance().getConfigDir().resolve(CreateUnbreakableToolsMod.MOD_ID).resolve(CreateUnbreakableToolsMod.CONFIG_FILE_NAME));
 
         ModItem.REGISTRATE.register();
         ModBlock.REGISTRATE.register();

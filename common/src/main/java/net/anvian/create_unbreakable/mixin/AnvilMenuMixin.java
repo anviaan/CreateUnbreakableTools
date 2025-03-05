@@ -1,9 +1,14 @@
 package net.anvian.create_unbreakable.mixin;
 
+import net.anvian.create_unbreakable.config.ModConfigs;
 import net.anvian.create_unbreakable.item.ModItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AnvilMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
+import net.minecraft.world.inventory.ItemCombinerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -29,13 +34,12 @@ abstract class AnvilMenuMixin extends ItemCombinerMenu {
     }
 
     @Inject(method = "createResult", at = @At("HEAD"), cancellable = true)
-    private void inject(CallbackInfo info){
+    private void inject(CallbackInfo info) {
         ItemStack itemStack1 = this.inputSlots.getItem(0).copy();
         ItemStack itemStack2 = this.inputSlots.getItem(1);
-        if (itemStack1.isDamageableItem() && itemStack2.is(ModItem.IRROMOLDING.get())){
-            int unbreakingLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack1);
+        if (itemStack1.isDamageableItem() && itemStack2.is(ModItem.IRROMOLDING.get())) {
             int mendingLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, itemStack1);
-            if (unbreakingLevel == 0 && mendingLevel == 0){
+            if (ModConfigs.apply_on_mending || mendingLevel == 0) {
                 this.cost.set(10);
 
                 CompoundTag nbt = itemStack1.getOrCreateTag();
@@ -51,8 +55,7 @@ abstract class AnvilMenuMixin extends ItemCombinerMenu {
 
         Map<Enchantment, Integer> enchantment = EnchantmentHelper.getEnchantments(itemStack2);
         boolean mending = enchantment.containsKey(Enchantments.MENDING);
-        boolean unbreaking = enchantment.containsKey(Enchantments.UNBREAKING);
-        if (itemStack1.hasTag() && itemStack1.getTag().getBoolean("Unbreakable") && (mending || unbreaking)){
+        if (itemStack1.hasTag() && itemStack1.getTag().getBoolean("Unbreakable") && mending) {
             this.resultSlots.setItem(0, ItemStack.EMPTY);
             this.cost.set(0);
 

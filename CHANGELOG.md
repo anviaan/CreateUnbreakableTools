@@ -1,2 +1,3 @@
-- Adding break by silk touch pickaxe
-- Word generation adjustments
+- Items with Mending can now become unbreakable (configurable)
+- Restrictions removed with Unbreaking tool
+- Anvian's Lib is now required

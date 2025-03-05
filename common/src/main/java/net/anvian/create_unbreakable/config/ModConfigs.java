@@ -11,9 +11,11 @@ public class ModConfigs {
 
     private static final ForgeConfigSpec.BooleanValue LUMINARCHY_EXPLOSION_AT_BREAK = BUILDER.define("luminarchy_explosion_at_break", true);
     private static final ForgeConfigSpec.BooleanValue PHILOLITE_EXPLOSION_AT_BREAK = BUILDER.define("philolite_explosion_at_break", true);
+    private static final ForgeConfigSpec.BooleanValue APPLY_ON_MENDING = BUILDER.define("apply_on_mending", true);
 
     public static boolean luminarchyExplosionAtBreak;
     public static boolean philoliteExplosionAtBreak;
+    public static boolean apply_on_mending;
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -24,5 +26,6 @@ public class ModConfigs {
 
         luminarchyExplosionAtBreak = LUMINARCHY_EXPLOSION_AT_BREAK.get();
         philoliteExplosionAtBreak = PHILOLITE_EXPLOSION_AT_BREAK.get();
+        apply_on_mending = APPLY_ON_MENDING.get();
     }
 }

@@ -24,6 +24,10 @@ configurations {
     developmentForge.extendsFrom common
 }
 
+repositories {
+    maven { url = "https://api.modrinth.com/maven" }
+}
+
 dependencies {
     forge("net.minecraftforge:forge:$minecraft_version-$forge_version")
     common(project(path: ":common", configuration: "namedElements")) { transitive = false }
@@ -36,6 +40,8 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-$minecraft_version-forge:$jei_version") { transitive = false }
+
+    modImplementation "maven.modrinth:anvians-lib:OwbTK1bs"
 }
 
 processResources {
