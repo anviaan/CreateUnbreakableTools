@@ -66,5 +66,6 @@ jobs:
             create-fabric
             porting_lib
             forge-config-api-port
+            anvians-lib
 
           java: ${{ env.JAVA_VERSION }}

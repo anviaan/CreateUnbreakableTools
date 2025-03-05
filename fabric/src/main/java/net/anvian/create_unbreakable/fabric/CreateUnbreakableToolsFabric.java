@@ -19,10 +19,10 @@ public class CreateUnbreakableToolsFabric implements ModInitializer {
         CreateUnbreakableToolsMod.LOGGER.info(EnvExecutor.unsafeRunForDist(
                 () -> () -> "{} is accessing Porting Lib on a Fabric client!",
                 () -> () -> "{} is accessing Porting Lib on a Fabric server!"
-                ), CreateUnbreakableToolsMod.NAME);
+        ), CreateUnbreakableToolsMod.NAME);
 
-        ModLoadingContext.registerConfig(CreateUnbreakableToolsMod.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.MOD_ID + "-config.toml");
-        ModConfigs.loadConfig(ModConfigs.SPEC, FabricLoader.getInstance().getConfigDir().resolve(CreateUnbreakableToolsMod.MOD_ID + "-config.toml"));
+        ModLoadingContext.registerConfig(CreateUnbreakableToolsMod.MOD_ID, ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.CONFIG_FILE_NAME);
+        ModConfigs.loadConfig(ModConfigs.SPEC, FabricLoader.getInstance().getConfigDir().resolve(CreateUnbreakableToolsMod.MOD_ID).resolve(CreateUnbreakableToolsMod.CONFIG_FILE_NAME));
 
         ModGroup.REGISTRATE.register();
         ModItem.REGISTRATE.register();

@@ -1,4 +1,4 @@
-name: Fabric and Forge Publish
+name: Mod Publish
 
 on:
   workflow_dispatch:
@@ -66,6 +66,7 @@ jobs:
             create-fabric
             porting_lib
             forge-config-api-port
+            anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
 
@@ -93,5 +94,6 @@ jobs:
 
           dependencies: |
             create
+            anvians-lib
 
           java: ${{ env.JAVA_VERSION }}

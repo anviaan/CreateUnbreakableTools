@@ -17,12 +17,13 @@ public class CreateUnbreakableToolsForge {
     public CreateUnbreakableToolsForge() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.MOD_ID + "-config.toml");
-        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve(CreateUnbreakableToolsMod.MOD_ID + "-config.toml"));
+        CreateUnbreakableToolsMod.init();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ModConfigs.SPEC, CreateUnbreakableToolsMod.CONFIG_FILE_NAME);
+        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve(CreateUnbreakableToolsMod.MOD_ID).resolve(CreateUnbreakableToolsMod.CONFIG_FILE_NAME));
 
         ModGroup.REGISTRATE.registerEventListeners(eventBus);
         ModItem.REGISTRATE.registerEventListeners(eventBus);
         ModBlock.REGISTRATE.registerEventListeners(eventBus);
-        CreateUnbreakableToolsMod.init();
     }
 }

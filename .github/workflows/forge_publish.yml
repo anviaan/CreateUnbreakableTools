@@ -63,5 +63,6 @@ jobs:
 
           dependencies: |
             create
+            anvians-lib
 
           java: ${{ env.JAVA_VERSION }}
