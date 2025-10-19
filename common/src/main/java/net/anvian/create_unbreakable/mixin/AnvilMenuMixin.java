@@ -1,6 +1,6 @@
 package net.anvian.create_unbreakable.mixin;
 
-import net.anvian.create_unbreakable.config.ModConfigs;
+import net.anvian.create_unbreakable.CreateUnbreakableToolsMod;
 import net.anvian.create_unbreakable.item.ModItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
@@ -39,7 +39,7 @@ abstract class AnvilMenuMixin extends ItemCombinerMenu {
         ItemStack itemStack2 = this.inputSlots.getItem(1);
         if (itemStack1.isDamageableItem() && itemStack2.is(ModItem.IRROMOLDING.get())) {
             int mendingLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, itemStack1);
-            if (ModConfigs.apply_on_mending || mendingLevel == 0) {
+            if (CreateUnbreakableToolsMod.configs.getConfig().apply_on_mending || mendingLevel == 0) {
                 this.cost.set(10);
 
                 CompoundTag nbt = itemStack1.getOrCreateTag();

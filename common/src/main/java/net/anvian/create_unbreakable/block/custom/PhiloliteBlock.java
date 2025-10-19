@@ -1,6 +1,6 @@
 package net.anvian.create_unbreakable.block.custom;
 
-import net.anvian.create_unbreakable.config.ModConfigs;
+import net.anvian.create_unbreakable.CreateUnbreakableToolsMod;
 import net.anvian.create_unbreakable.item.ModItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +21,7 @@ public class PhiloliteBlock extends EternalBlock {
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!level.isClientSide && ModConfigs.philoliteExplosionAtBreak) {
+        if (!level.isClientSide && CreateUnbreakableToolsMod.configs.getConfig().philoliteExplosionAtBreak) {
             level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 3, false, Level.ExplosionInteraction.BLOCK);
         }
         super.onRemove(state, level, pos, newState, isMoving);

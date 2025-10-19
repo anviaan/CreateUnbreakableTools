@@ -39,18 +39,16 @@ dependencies {
     modImplementation("com.jozufozu.flywheel:flywheel-forge-$flywheel_forge_minecraft_version:$flywheel_forge_version")
 
     // Development QOL
-    modLocalRuntime("mezz.jei:jei-$minecraft_version-forge:$jei_version") { transitive = false }
-
-    modImplementation "maven.modrinth:anvians-lib:OwbTK1bs"
+    modImplementation "maven.modrinth:anvians-lib:kMj4PHs2"
 }
 
 processResources {
     // set up properties for filling into metadata
     Map<String, Object> properties = [
-            "version": version,
-            "forge_version": forge_version.split("\\.")[0], // only specify major version of forge
+            "version"          : version,
+            "forge_version"    : forge_version.split("\\.")[0], // only specify major version of forge
             "minecraft_version": minecraft_version,
-            "create_version": create_forge_version.split("-")[0] // cut off build number
+            "create_version"   : create_forge_version.split("-")[0] // cut off build number
     ]
     inputs.properties(properties)
 

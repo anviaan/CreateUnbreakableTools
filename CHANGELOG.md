@@ -1,3 +1,2 @@
-- Items with Mending can now become unbreakable (configurable)
-- Restrictions removed with Unbreaking tool
-- Anvian's Lib is now required
+- Updating mod to support anvian's lib v1.4
+- Refactor Config to use new lib config system
