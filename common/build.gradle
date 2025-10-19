@@ -28,5 +28,5 @@ repositories {
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:$fabric_loader_version")
     modCompileOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version")
-    modImplementation 'net.anvian.anvianslib:anvianslib-common-1.19:1.1'
+    modImplementation("net.anvian.anvianslib:anvianslib-common-1.19:$anvianslib")
 }

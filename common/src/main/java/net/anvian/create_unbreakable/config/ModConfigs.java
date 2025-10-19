@@ -1,31 +1,28 @@
 package net.anvian.create_unbreakable.config;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.io.WritingMode;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.anvian.anvianslib.config.Config;
+import org.slf4j.Logger;
 
-import java.nio.file.Path;
+public class ModConfigs extends Config<ModConfigs.CreateUnbreakableConfig> {
 
-public class ModConfigs {
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public ModConfigs(Class<CreateUnbreakableConfig> configClass, Logger logger) {
+        super(configClass, logger);
+    }
 
-    private static final ForgeConfigSpec.BooleanValue LUMINARCHY_EXPLOSION_AT_BREAK = BUILDER.define("luminarchy_explosion_at_break", true);
-    private static final ForgeConfigSpec.BooleanValue PHILOLITE_EXPLOSION_AT_BREAK = BUILDER.define("philolite_explosion_at_break", true);
-    private static final ForgeConfigSpec.BooleanValue APPLY_ON_MENDING = BUILDER.define("apply_on_mending", true);
+    @Override
+    protected CreateUnbreakableConfig createDefaultConfig() {
+        return new CreateUnbreakableConfig();
+    }
 
-    public static boolean luminarchyExplosionAtBreak;
-    public static boolean philoliteExplosionAtBreak;
-    public static boolean apply_on_mending;
+    public static class CreateUnbreakableConfig {
+        public boolean luminarchyExplosionAtBreak;
+        public boolean philoliteExplosionAtBreak;
+        public boolean apply_on_mending;
 
-    public static final ForgeConfigSpec SPEC = BUILDER.build();
-
-    public static void loadConfig(ForgeConfigSpec spec, Path path) {
-        final CommentedFileConfig configData = CommentedFileConfig.builder(path).sync().autosave().writingMode(WritingMode.REPLACE).build();
-        configData.load();
-        spec.setConfig(configData);
-
-        luminarchyExplosionAtBreak = LUMINARCHY_EXPLOSION_AT_BREAK.get();
-        philoliteExplosionAtBreak = PHILOLITE_EXPLOSION_AT_BREAK.get();
-        apply_on_mending = APPLY_ON_MENDING.get();
+        CreateUnbreakableConfig() {
+            this.luminarchyExplosionAtBreak = true;
+            this.philoliteExplosionAtBreak = true;
+            this.apply_on_mending = true;
+        }
     }
 }
