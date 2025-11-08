@@ -1,2 +1,1 @@
-- Updating mod to support anvian's lib v1.4
-- Refactor Config to use new lib config system
+- Fix error #8

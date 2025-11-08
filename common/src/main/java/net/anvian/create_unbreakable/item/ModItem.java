@@ -6,7 +6,7 @@ import net.anvian.create_unbreakable.CreateUnbreakableToolsMod;
 import net.anvian.create_unbreakable.item.custom.EternalItem;
 
 public class ModItem {
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateUnbreakableToolsMod.MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateUnbreakableToolsMod.REGISTRATE;
 
     public static final ItemEntry<EternalItem> IRROMOLDING = REGISTRATE.item("irromolding",
             EternalItem::new).properties(properties -> properties.stacksTo(1)).register();

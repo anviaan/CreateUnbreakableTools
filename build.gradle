@@ -1,6 +1,8 @@
 plugins {
-    id "architectury-plugin" version "3.4.+"
-    id "dev.architectury.loom" version "1.7.+" apply false
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
+    id "io.github.juuxel.loom-quiltflower" version "1.+" apply false // Quiltflower, a better decompiler
+    id "io.github.p03w.machete" version "1.+" // automatic jar compressing on build
 }
 
 tasks.register("printEnv") {
@@ -24,17 +26,23 @@ subprojects {
     }
 
     repositories {
-        maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
-
-        // mavens used on both forge and fabric
+        mavenCentral()
+        maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
         maven { url = "https://maven.blamejared.com/" } // JEI
-        maven { url = "https://modmaven.dev/" } // Flywheel on both, Create and Registrate on forge
+        maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+        maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
+        maven { url = "https://maven.tterrag.com" } // Registrate
+        maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
         maven { url = 'https://repo.repsy.io/mvn/anvian/anvians-lib' }
     }
 
     dependencies {
-        minecraft "com.mojang:minecraft:$minecraft_version"
-        mappings loom.officialMojangMappings()
+        minecraft "com.mojang:minecraft:${minecraft_version}"
+        mappings(loom.layered {
+            it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
+            it.officialMojangMappings { nameSyntheticMembers = false }
+        })
     }
 }
 
@@ -43,19 +51,21 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    base.archivesName = archives_base_name
-    group = maven_group
+    archivesBaseName = rootProject.archives_base_name
+    group = rootProject.maven_group
 
-    // Formats the mod version to include the loader, Minecraft version, and build number (if present)
-    // example: 1.0.0+fabric-1.18.2-build.100
     String buildNumber = System.getenv("GITHUB_RUN_NUMBER")
-    version = "$mod_version+$project.name-$minecraft_version" + (buildNumber != null ? "-build.$buildNumber" : "")
+    version = "${mod_version}-${minecraft_version}-${project.name}" + (buildNumber != null ? "-${buildNumber}" : "")
 
-    tasks.withType(JavaCompile).configureEach {
+    tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
 
     java {
         withSourcesJar()
+    }
+
+    machete {
+        enabled = buildNumber != null
     }
 }

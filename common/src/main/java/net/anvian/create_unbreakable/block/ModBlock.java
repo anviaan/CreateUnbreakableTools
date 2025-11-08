@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @SuppressWarnings("unused")
 public class ModBlock {
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateUnbreakableToolsMod.MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateUnbreakableToolsMod.REGISTRATE;
 
     public static final BlockEntry<PhiloliteBlock> PHILOLITE_BLOCK = REGISTRATE.block(
                     "philolite_block", PhiloliteBlock::new)

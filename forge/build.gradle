@@ -25,18 +25,35 @@ configurations {
 }
 
 repositories {
+    // mavens for Forge-exclusives
+    maven { url = "https://maven.theillusivec4.top/" } // Curios
+    maven { // Create Forge and Registrate Forge
+        url = "https://maven.tterrag.com/"
+        content {
+            includeGroup("com.tterrag.registrate")
+            includeGroup("com.simibubi.create")
+        }
+    }
     maven { url = "https://api.modrinth.com/maven" }
 }
 
 dependencies {
-    forge("net.minecraftforge:forge:$minecraft_version-$forge_version")
+    forge("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     common(project(path: ":common", configuration: "namedElements")) { transitive = false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     // Create and its dependencies
-    modImplementation("com.simibubi.create:create-$minecraft_version:$create_forge_version:slim") { transitive = false }
-    modImplementation("com.tterrag.registrate:Registrate:$registrate_forge_version")
-    modImplementation("com.jozufozu.flywheel:flywheel-forge-$flywheel_forge_minecraft_version:$flywheel_forge_version")
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
+    modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_forge_version}")
+    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_forge_version}")
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_forge_version}")
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
+
+    // Development QOL
+    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
 
     // Development QOL
     modImplementation "maven.modrinth:anvians-lib:kMj4PHs2"
@@ -44,13 +61,13 @@ dependencies {
 
 processResources {
     // set up properties for filling into metadata
-    Map<String, Object> properties = [
-            "version"          : version,
-            "forge_version"    : forge_version.split("\\.")[0], // only specify major version of forge
-            "minecraft_version": minecraft_version,
-            "create_version"   : create_forge_version.split("-")[0] // cut off build number
-    ]
-    inputs.properties(properties)
+    Map<String, String> properties = Map.of(
+            "version", version,
+            "forge_version", forge_version.split("\\.")[0], // only specify major version of forge
+            "minecraft_version", minecraft_version,
+            "create_version", create_forge_version.split("-")[0] // cut off build number
+    )
+    properties.forEach((k, v) -> inputs.property(k, v))
 
     filesMatching("META-INF/mods.toml") {
         expand properties
